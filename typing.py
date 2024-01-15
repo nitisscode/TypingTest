@@ -25,6 +25,7 @@ test=["Hunt and peck (two-fingered typing), also known as Eagle Finger, is a com
 
 test1=r.choice(test) #take a random sentence from the test array
 
+#function for catch typing mistake
 def mistake(para,usertest):
     error=0
     global word
@@ -37,6 +38,17 @@ def mistake(para,usertest):
         except:
             error+=1   
     return error  
+
+#function for measure time of typing in word per minute
+def speedtime(time_s,time_e,userinput):
+    global word
+
+    tytest=round(time_e-time_s)/60
+    print("Word Typed:",word)
+    print("Time Taken:",round(tytest,2),"min")
+    
+    speed=round(word/tytest)
+    return speed
 
 
 
@@ -53,8 +65,10 @@ def get_user_input():
     time2=time()
 
     errors=mistake(test1,testinput)
+    TypingSpeed=speedtime(time1,time2,testinput)
+    
     print("Errors: ",errors)
-    print("Word",word)
+    print("speed: ",TypingSpeed,"WPM")
 
     word=1
     
