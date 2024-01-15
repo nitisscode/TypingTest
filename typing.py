@@ -8,6 +8,7 @@ import json              #calling json file
 file=False
 finaldata=None
 
+#function for calling json file data
 def ReadData():
     global finaldata
     try:
@@ -15,9 +16,9 @@ def ReadData():
         x=file.read()
         finaldata=json.loads(x)
     except:
-        finaldata="Something is Wrong!"  
+        print("Something is Wrong!")
 ReadData()
-print(finaldata)
+
 
 #input for enter username and extra print statement for line gap
 username=input("Enter UserName: ")
@@ -66,6 +67,23 @@ def speedtime(time_s,time_e,userinput):
     speed=round(word/tytest)
     return speed
 
+#Function for store json data in array (List)
+def userdata(dic,finaldata):
+    res=False
+    
+    if(finaldata!=None): 
+        for a in finaldata:
+            if(username==a["user"]):
+                res=True
+            
+            arr.append(a)
+
+    if(res==False):
+        arr.append(dic)
+    else:
+        for i in finaldata:
+            if(username==i["user"]):
+                i["WPM"]=dic["WPM"]
 
 
 # function for user typing input and time capture
@@ -86,8 +104,14 @@ def get_user_input():
     print("Errors: ",errors)
     print("speed: ",TypingSpeed,"WPM")
 
+    dic["user"]=username
+    dic["WPM"]=TypingSpeed
+    userdata(dic,finaldata)
+    print(arr)
+
     word=1
-    
+
+
 
 
 
