@@ -2,13 +2,29 @@
 
 from time import *
 import random as r
+import json              #calling json file
 
+
+file=False
+finaldata=None
+
+def ReadData():
+    global finaldata
+    try:
+        file=open("data.json","r")
+        x=file.read()
+        finaldata=json.loads(x)
+    except:
+        finaldata="Something is Wrong!"  
+ReadData()
+print(finaldata)
 
 #input for enter username and extra print statement for line gap
 username=input("Enter UserName: ")
 print()
 print()
 
+# array and dictionary for upload data in json file
 arr=[]
 dic={"user":None,
     "WPM":0
