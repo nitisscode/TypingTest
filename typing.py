@@ -1,6 +1,7 @@
 # import time and random from libraries
 
 from time import *
+from decimal import Decimal
 import random as r
 import json              #calling json file
 
@@ -61,11 +62,16 @@ def mistake(para,usertest):
 def speedtime(time_s,time_e,userinput):
     global word
 
-    tytest=round(time_e-time_s)/60
+    tytest=round(time_e-time_s,2)
+    minute=int(tytest/60)
+    sec=int(tytest%60)
+    final_time=str(minute)+"."+str(sec)
+
     print("Word Typed:",word)
-    print("Time Taken:",round(tytest,2),"min")
+    print("Time Taken:",minute,"minutes",sec,"seconds")
     
-    speed=round(word/tytest)
+    typ=round(tytest/60,2)
+    speed=round(word/typ)
     return speed
 
 #Function for store json data in array (List)
@@ -128,6 +134,19 @@ def get_user_input():
 
     word=1
 
+#function for show leaderboard
+def show_leaderboard(result):
+
+    print()
+    print("_____________Leader Board_____________")
+    print()
+
+    for i in result:
+        un=i["user"]
+        ws=i["WPM"]
+        print("username:- ",un)
+        print("speed   :- ",ws,"Words per minute")
+        print()
 
 
 #main function to choose options for user
@@ -138,11 +157,15 @@ def main():
     choose=input("1/2/3: ")
     if(choose=="1"):
         get_user_input()
-    if(choose=="2"):
+        main()
+    elif(choose=="2"):
         
         userdata(dic,finaldata)
         res=update_leaderboard()
-        print(res)    
+        show_leaderboard(res) 
+        main()
+    else:
+        print("Exit..!")       
 main()          
 
 
