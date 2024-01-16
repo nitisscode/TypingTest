@@ -1,6 +1,22 @@
 [
-    {
-        "user": "nitish",
-        "WPM": 20
-      }
+  {
+    "user": "nitish",
+    "WPM": 7
+  },
+  {
+    "user": "nk",
+    "WPM": 13
+  },
+  {
+    "user": "sk",
+    "WPM": 22
+  },
+  {
+    "user": "vk",
+    "WPM": 23
+  },
+  {
+    "user": "kumar",
+    "WPM": 24
+  }
 ]
