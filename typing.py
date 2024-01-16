@@ -22,6 +22,7 @@ ReadData()
 
 #input for enter username and extra print statement for line gap
 username=input("Enter UserName: ")
+typspeed=0
 print()
 print()
 
@@ -70,12 +71,13 @@ def speedtime(time_s,time_e,userinput):
 #Function for store json data in array (List)
 def userdata(dic,finaldata):
     res=False
-    
+    dic["user"]=username
+    dic["WPM"]=typspeed
     if(finaldata!=None): 
         for a in finaldata:
             if(username==a["user"]):
                 res=True
-            
+                dic["WPM"]=a["WPM"]
             arr.append(a)
 
     if(res==False):
@@ -83,12 +85,27 @@ def userdata(dic,finaldata):
     else:
         for i in finaldata:
             if(username==i["user"]):
-                i["WPM"]=dic["WPM"]
+                if(typspeed!=0):
+                    i["WPM"]=typspeed
+                else:
+                    i["WPM"]=dic["WPM"]    
 
+
+#function for update sorted leaderboard and send to json file
+def update_leaderboard():
+    global arr
+    upload=open("data.json","w")
+    sorted_arr=sorted(arr,key=lambda v:v["WPM"])
+    
+    new_data=json.dumps(sorted_arr,indent=2)
+    y=upload.write(new_data)
+    sortedarr=sorted_arr
+    arr=[]
+    return sorted_arr
 
 # function for user typing input and time capture
 def get_user_input():
-    global word, test1
+    global word, test1, typspeed
     
     print()
     print(test1)
@@ -104,15 +121,12 @@ def get_user_input():
     print("Errors: ",errors)
     print("speed: ",TypingSpeed,"WPM")
 
-    dic["user"]=username
-    dic["WPM"]=TypingSpeed
+    #dic["user"]=username
+    typspeed=TypingSpeed
     userdata(dic,finaldata)
-    print(arr)
+    res=update_leaderboard()
 
     word=1
-
-
-
 
 
 
@@ -123,7 +137,12 @@ def main():
     print("3. Exit")
     choose=input("1/2/3: ")
     if(choose=="1"):
-        get_user_input()   
+        get_user_input()
+    if(choose=="2"):
+        
+        userdata(dic,finaldata)
+        res=update_leaderboard()
+        print(res)    
 main()          
 
 
