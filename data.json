@@ -1,27 +1,7 @@
 [
   {
-    "user": "dk",
-    "WPM": 1
-  },
-  {
-    "user": "hk",
-    "WPM": 1
-  },
-  {
-    "user": "nitish",
-    "WPM": 7
-  },
-  {
-    "user": "manish",
-    "WPM": 20
-  },
-  {
-    "user": "1",
-    "WPM": 20
-  },
-  {
     "user": "kishor",
-    "WPM": 21
+    "WPM": 18
   },
   {
     "user": "nk",
@@ -32,11 +12,7 @@
     "WPM": 24
   },
   {
-    "user": "vk",
-    "WPM": 25
-  },
-  {
-    "user": "sk",
-    "WPM": 29
+    "user": "nitish",
+    "WPM": 26
   }
 ]
