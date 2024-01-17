@@ -1,9 +1,8 @@
-# import time and random from libraries
+# import time and random from libraries and calling json file
 
 from time import *
-from decimal import Decimal
 import random as r
-import json              #calling json file
+import json              
 
 
 file=False
@@ -127,7 +126,6 @@ def get_user_input():
     print("Errors: ",errors)
     print("speed: ",TypingSpeed,"WPM")
 
-    #dic["user"]=username
     typspeed=TypingSpeed
     userdata(dic,finaldata)
     res=update_leaderboard()
